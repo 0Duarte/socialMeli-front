@@ -58,7 +58,10 @@ export async function createPost(postData) {
     },
     body: JSON.stringify(postData),
   });
-  if (!response.ok) throw new Error('Erro ao criar publicação');
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => null);
+    throw new Error(errorData?.error || 'Erro ao criar publicação');
+  }
   return response;
 }
 
