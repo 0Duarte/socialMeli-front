@@ -1,16 +1,74 @@
-# React + Vite
+# SocialMeli - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-grey?style=for-the-badge&logo=tailwind-css&logoColor=38B2AC)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
-Currently, two official plugins are available:
+Frontend em React para a aplicação SocialMeli, uma rede social para vendedores do Mercado Livre.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tecnologias
 
-## React Compiler
+- React 19
+- Vite
+- Tailwind CSS
+- React Router DOM
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Como Rodar o Projeto
 
-## Expanding the ESLint configuration
+### Pré-requisitos
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Node.js (versão 18 ou superior)
+- npm ou yarn
+- Backend rodando em `http://localhost:8080`
+
+
+### Instalação
+
+```bash
+# Clonar o repositório
+git clone https://github.com/0Duarte/socialMeli-front
+cd socialmeli-front
+
+# Instalar dependências
+npm install
+```
+
+### Executar em Desenvolvimento
+
+```bash
+npm run dev
+```
+
+O projeto estará disponível em `http://localhost:5173`
+
+
+## Endpoints Utilizados
+
+O frontend consome a API backend rodando em `http://localhost:8080`.
+
+### Follow Endpoints
+
+| Método | Endpoint | Descrição | User Story |
+|--------|----------|-----------|------------|
+| `POST` | `/users/{userId}/follow/{userIdToFollow}` | Seguir um vendedor | US0001 |
+| `POST` | `/users/{userId}/unfollow/{userIdToUnfollow}` | Deixar de seguir um vendedor | US0007 |
+| `GET` | `/users/{userId}/followers/count` | Obter contagem de seguidores | US0002 |
+| `GET` | `/users/{userId}/followers/list?order={order}` | Listar seguidores | US0003 |
+| `GET` | `/users/{userId}/followed/list?order={order}` | Listar vendedores seguidos | US0004 |
+
+### Post Endpoints
+
+| Método | Endpoint | Descrição | User Story |
+|--------|----------|-----------|------------|
+| `POST` | `/products/publish` | Criar uma nova publicação | US0005 |
+| `GET` | `/products/followed/{userId}/list?order={order}` | Feed de publicações dos vendedores seguidos | US0006 |
+| `POST` | `/products/promo-pub` | Criar publicação promocional | US0010 |
+| `GET` | `/products/promo-pub/count?user_id={userId}` | Contagem de produtos em promoção | US0011 |
+
+### Parâmetros de Ordenação
+
+O parâmetro `order` aceita os seguintes valores:
+- `name_asc` - Ordenar por nome A-Z
+- `name_desc` - Ordenar por nome Z-A
+- `date_asc` - Ordenar por data crescente
+- `date_desc` - Ordenar por data decrescente
